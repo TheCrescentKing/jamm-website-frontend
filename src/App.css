@@ -1,0 +1,18 @@
+.App {
+  position: static;
+}
+
+.Navigation{
+  /* background-color: red; */
+}
+
+.ActiveComponent{
+  background-color: green;
+  height: 100%;
+}
+
+.Sidebar{
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+}
