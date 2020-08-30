@@ -3,9 +3,11 @@ import './App.css';
 
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
-import ProjectList from './components/ProjectList';
-import CreateProject from './components/CreateProject';
-import EditProject from './components/EditProject';
+import Sidebar from './components/Sidebar.component';
+
+import ProjectList from './components/ProjectList.component';
+import CreateProject from './components/CreateProject.component';
+import EditProject from './components/EditProject.component';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -35,8 +37,8 @@ function App() {
               <Route path="/edit/:id" component={EditProject} />
               <Route path="/create" component={CreateProject} />
             </div>
-            <div className="Sidebar col bg-light">
-              Sidebar
+            <div className="col bg-light">
+              <Sidebar></Sidebar>
             </div>
           </div>
         </div>
