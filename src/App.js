@@ -37,7 +37,7 @@ function App() {
               <Route path="/edit/:id" component={EditProject} />
               <Route path="/create" component={CreateProject} />
             </div>
-            <div className="col bg-light">
+            <div className="bg-light">
               <Sidebar></Sidebar>
             </div>
           </div>
