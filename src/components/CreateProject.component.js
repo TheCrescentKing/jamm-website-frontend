@@ -1,57 +1,81 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class CreateProject extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            project_title: '',
-            project_description: '',
-            project_repo: '',
-            project_technology: ''
+            title: '',
+            description: '',
+            repo: '',
+            technology: '',
+            image: ''
         }
     }
 
     onChangeProjectDescription = (e) => {
         this.setState({
-            project_description: e.target.value
+            description: e.target.value
         });
     }
 
     onChangeProjectTitle = (e) => {
         this.setState({
-            project_title: e.target.value
+            title: e.target.value
         });
     }
 
     onChangeProjectRepo = (e) => {
         this.setState({
-            project_repo: e.target.value
+            repo: e.target.value
         });
     }
 
     onChangeProjectTechnology = (e) =>{
         this.setState({
-            project_technology: e.target.value
+            technology: e.target.value
         });
+        console.log(this.state.technology);
+    }
+
+    onChangeProjectImage = (e) => {
+        this.setState({
+            image: e.target.files[0]
+        })
     }
 
     onSubmit = (e) => {
         e.preventDefault();
 
-        // Temporary logging because the backend is not implemented yet.
-        console.log(`Form submitted:
-        Project Title ${this.state.project_title}
-        Project Description ${this.state.project_description}
-        Project Repo ${this.state.project_repo}
-        Project Technology ${this.state.project_technology}`);
+        let data = new FormData();
+
+        data.append('title', this.state.title);
+        data.append('description', this.state.description);
+        data.append('repo', this.state.repo);
+        data.append('technology', this.state.technology);
+        data.append('file', this.state.image);
+
+        // const newProject = {
+        //     title: this.state.title,
+        //     description: this.state.description,
+        //     repo: this.state.repo,
+        //     technology: this.state.technology,
+        //     image: imageName
+        // }
+
+        // Post the form through the API
+        // TODO Exctract to a separate file
+        axios.post('http://localhost:4000/projects/add', data)
+            .then(res => console.log(res.data));
 
         // Reset the form by resetting state of the object
         this.setState({
-            project_title: '',
-            project_description: '',
-            project_repo: '',
-            project_technology: ''
+            title: '',
+            description: '',
+            repo: '',
+            technology: '',
+            image: ''
         })
     }
 
@@ -65,7 +89,7 @@ export default class CreateProject extends Component{
                         <input 
                                 type="text" 
                                 className="form-control"
-                                value={this.state.project_title}
+                                value={this.state.title}
                                 onChange={this.onChangeProjectTitle}
                                 />
                     </div>
@@ -73,7 +97,7 @@ export default class CreateProject extends Component{
                         <label>Description: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.project_description}
+                                value={this.state.description}
                                 onChange={this.onChangeProjectDescription}
                                 />
                     </div>
@@ -81,23 +105,31 @@ export default class CreateProject extends Component{
                         <label>Repository: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.project_repo}
+                                value={this.state.repo}
                                 onChange={this.onChangeProjectRepo}
                                 />
                     </div>
                     <div className="form-group"> 
                         <label>Technology: </label>
                         {/* TODO: Replace with checkbox */}
-                        <select className="form-control" value={this.state.project_technology} onChange={this.onChangeProjectTechnology}>
-                            <option value="java">Java</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="rust">Rust</option>
-                            <option value="nodejs">NodeJS</option>
-                            <option value="php">PHP</option>
-                            <option value="laravel">Laravel</option>
-                            <option value="c">C</option>
+                        <select className="form-control" value={this.state.technology} onChange={this.onChangeProjectTechnology}>
+                            <option value="Java">Java</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Rust">Rust</option>
+                            <option value="NodeJs">NodeJS</option>
+                            <option value="PHP">PHP</option>
+                            <option value="Laravel">Laravel</option>
+                            <option value="C">C</option>
+                            <option value="C++">C++</option>
                         </select>
                     </div>
+                    <div> 
+                        <label value="image">Upload Image</label>
+                        <br></br>
+                        <input type="file"
+                            name="image" onChange={this.onChangeProjectImage} /> 
+                    </div>
+                    <br></br>
                     <div className="form-group">
                         <input type="submit" value="Create Project" className="btn btn-primary" />
                     </div>

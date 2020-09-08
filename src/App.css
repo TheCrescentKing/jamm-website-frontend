@@ -1,3 +1,23 @@
+/* cairo-regular - latin */
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cairo Regular'), local('Cairo-Regular'),
+       url('/fonts/cairo/cairo-v7-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/fonts/cairo/cairo-v7-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* oxygen-regular - latin */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen Regular'), local('Oxygen-Regular'),
+       url('/fonts/oxygen/oxygen-v9-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/fonts/oxygen/oxygen-v9-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 html {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -12,7 +32,7 @@ html {
 }
 
 .ActiveComponent{
-  background-color: green;
+  /* background-color: green; */
   height: 100%;
   margin: 1em;
 }
@@ -21,4 +41,13 @@ html {
   position: fixed;
   z-index: 1;
   height: 100%;
+}
+
+.project-list {
+  text-align: center;
+  font-family: "Cairo", sans-serif;
+}
+
+.project-list p{
+  font-family: "Oxygen", sans-serif;
 }
